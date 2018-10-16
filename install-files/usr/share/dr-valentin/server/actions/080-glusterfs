@@ -1,0 +1,28 @@
+#!/bin/bash
+#
+Gluster_bin=$(type -fp gluster)
+if [ "x$Gluster_bin" = "x" ]; then
+    echo "Gluster is not installed" 
+    exit
+fi
+
+FOLDER="$1/glusterfs/"
+mkdir ${FOLDER}
+systemctl status glusterfs-server > ${FOLDER}"status"
+if [ -e "/etc/init.d/glusterfs-server" ]; then
+	echo "init service exists" >> ${FOLDER}"status"
+else
+	echo "WARNING!! init service not exists" >> ${FOLDER}"status"
+fi
+
+gluster peer status > ${FOLDER}"cluster" 2>&1
+echo "***********************************************" >> ${FOLDER}"cluster"
+gluster volume status all >> ${FOLDER}"cluster"
+echo "***********************************************" >> ${FOLDER}"cluster"
+gluster volume info all >> ${FOLDER}"cluster"
+
+if [ -e "/net/.data" ]; then
+	python -c "import xattr; print xattr.listxattr('/net/.data')" > ${FOLDER}"net.data.extended.attributes"
+else
+	echo "Not exists net/.data folder" > ${FOLDER}"net.data.extended.attributes"
+fi	

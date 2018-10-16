@@ -1,0 +1,5 @@
+#!/bin/bash
+FOLDER="$1/squid/"
+mkdir ${FOLDER}
+[ -e /etc/squid/squid.conf ] && ( cat /etc/squid/squid.conf && echo ) >> ${FOLDER}"squid"
+

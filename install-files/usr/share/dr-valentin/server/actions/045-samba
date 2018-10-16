@@ -1,0 +1,5 @@
+#!/bin/bash
+FOLDER="$1/samba/"
+mkdir ${FOLDER}
+smbclient -L localhost -N > ${FOLDER}"online_shared"
+cp -r /etc/samba ${FOLDER}

@@ -1,0 +1,148 @@
+#!/usr/bin/env python
+
+import sys
+import xmlrpclib
+import os
+import json
+
+def read_key():
+	
+	f=open("/etc/n4d/key")
+	key=f.readline()
+	f.close()
+	
+	key=key.strip("\n")
+	
+	return key
+	
+#def read_key
+
+def is_n4d_exception(response):
+	
+	exception=None
+	try:
+		exception="[%s] %s Failed: %s"%(response["class_name"],response["function"],response["msg"])
+	except:
+		pass
+		
+	return exception
+	
+#def is_n4d_exception
+
+
+path=sys.argv[1]+"/n4d-ldap/"
+os.mkdir(path)
+
+key=read_key()
+c=xmlrpclib.ServerProxy("https://server:9779")
+
+f=open(path+"/n4d-ldap.log","w")
+
+
+f.write("USER LIST TESTS...\n")
+
+
+
+try:
+	ret = c.get_user_list(key,"Golem","*")
+	ok=True
+	netadmin_found=False
+	
+	if is_n4d_exception(ret)!=None:
+		
+		e=Exception("n4d Exception: %s"%is_n4d_exception(ret))
+		raise e
+		
+	else:
+		for item in ret:
+			try:
+				if item["uid"]=="netadmin":
+					netadmin_found=True
+			except:
+				pass
+				
+			for attr in ["profile","cn","description","sambaHomePath","objectClass","loginShell","uidNumber","sambaAcctFlags","sambaProfilePath","gidNumber","gecos","sn","groups","homeDirectory","is_admin","path","uid"]:
+				if attr not in item:
+					f.write("\t\t"+attr+" not found in ldap user\n")
+					ok=False
+		
+		f.write("\tnetadmin ... ")
+		if netadmin_found:
+			f.write("OK\n")
+		else:
+			f.write("FAILED\n")
+		if ok:
+			f.write("USER LIST TESTS ... OK\n")
+		else:
+			f.write("USER LIST TESTS ... FAILED\n")
+		
+except Exception as e:
+	
+	f.write("USER LIST FAILED BECAUSE:\n" +str(e)+"\n")
+
+
+f.write("STUDENT LIST... ")
+
+try:
+	ret=c.get_student_list(key,"Golem")
+
+	if is_n4d_exception(ret)!=None:
+		e=Exception("n4d Exception: %s"%is_n4d_exception(ret))
+		raise e
+
+	f.write("OK\n")
+except Exception as e:
+	
+	f.write("STUDENT LIST FAILED BECAUSE:\n" +str(e)+"\n")
+
+f.write("TEACHERS LIST... ")
+	
+try:
+	ret=c.get_teacher_list(key,"Golem")
+	if is_n4d_exception(ret)!=None:
+		e=Exception("n4d Exception: %s"%is_n4d_exception(ret))
+		raise e
+	f.write("OK\n")
+except Exception as e:
+	f.write("FAILED BECAUSE:\n" +str(e)+"\n")
+
+
+f.write("STUDENTS PASSWORD LIST... ")
+	
+try:
+	ret=c.get_students_passwords(key,"Golem")
+	if is_n4d_exception(ret)!=None:
+		e=Exception("n4d Exception: %s"%is_n4d_exception(ret))
+		raise e
+	f.write("OK\n")
+except Exception as e:
+	f.write("FAILED BECAUSE:\n" +str(e)+"\n")
+
+
+f.write("GET_FROZEN_USERS LIST... ")
+	
+try:
+	ret=c.get_frozen_users(key,"Golem")
+	if is_n4d_exception(ret)!=None:
+		e=Exception("n4d Exception: %s"%is_n4d_exception(ret))
+		raise e
+	f.write("OK\n")
+except Exception as e:
+	f.write("FAILED BECAUSE:\n" +str(e)+"\n")
+
+f.close()
+
+try:
+	ret=c.full_search(key,"Golem")
+	if is_n4d_exception(ret)!=None:
+		e=Exception("n4d Exception: %s"%is_n4d_exception(ret))
+		raise e
+	f=open(path+"/ldap-info.log","w")
+	data=unicode(json.dumps(ret,indent=4,encoding="utf-8",ensure_ascii=False)).encode("utf-8")
+	f.write(data)
+	f.close()
+	
+except Exception as e:
+	print e
+	
+

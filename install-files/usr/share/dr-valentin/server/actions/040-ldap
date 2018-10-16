@@ -1,0 +1,32 @@
+#!/bin/bash
+FOLDER="$1/slapd/"
+mkdir $FOLDER
+cat /etc/default/slapd | sed -e "/^#\|^$/d" > ${FOLDER}"etc.default.slapd"
+if [ -e "/run/slapd/ldapi" ]; then
+	echo "Ldapi port is ready" >> ${FOLDER}"ports_opened"
+	ldapsearch -Y EXTERNAL -H ldapi:// -b cn=config -o ldif-wrap=no | grep -v "olcRootPW"  > ${FOLDER}"ldap-config"
+else
+	echo "Warning!! Ldapi port is stoped" >> ${FOLDER}"ports_opened"
+fi
+LDAPS=0
+LDAP=0
+for port in $(netstat -pnuat | grep slapd | grep -v tcp6 | cut -d ":" -f2 | cut -d " " -f1 | sort -u | tr "\n" " "); do
+	if [ "$port" = "389" ]; then
+		echo "Ldap port is ready" >> ${FOLDER}"ports_opened"
+		LDAP=1
+	elif [ "$port" = "636" ]; then
+		echo "Ldaps port is ready" >> ${FOLDER}"ports_opened"
+		LDAPS=1
+	else
+		echo "Warning!!Unknown port is ready" >> ${FOLDER}"ports_opened"
+	fi
+done	
+
+if [ "$LDAPS" = "0" ]; then
+	echo "ERROR!Ldaps port is not ready" >> ${FOLDER}"ports_opened"
+fi
+
+if [ "$LDAP" = "0" ]; then
+	echo "ERROR!Ldap port is not ready" >> ${FOLDER}"ports_opened"
+fi
+cp /etc/apparmor.d/usr.sbin.slapd ${FOLDER}

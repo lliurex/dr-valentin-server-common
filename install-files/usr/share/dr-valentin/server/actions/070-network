@@ -1,0 +1,24 @@
+#!/bin/sh
+
+mkdir $1/network/
+
+cp /etc/network/interfaces $1/network/
+if [ -x /etc/init/network-manager.override ]; then
+    cp /etc/init/network-manager.override $1/network
+fi
+cp /etc/resolv.conf $1/network/
+cp /etc/hosts	$1/network/
+route -n >> $1/network/route
+
+ifconfig >> $1/network/ifconfig
+
+iptables-save >> $1/network/iptables
+
+if [ -e "/etc/sysctl.d/10-lliurex-forwarding.conf" ]; then
+	cp /etc/sysctl.d/10-lliurex-forwarding.conf $1/network/etc.sysctl.d.10-lliurex-forwarding.conf
+else
+	touch $1/network/routing-not-persistent
+fi
+echo "#0 is Disabled ; 1 is Enabled" > $1/network/status_routing
+cat /proc/sys/net/ipv4/ip_forward >> $1/network/status_routing
+cp /etc/dhcp/dhclient.conf	$1/network/

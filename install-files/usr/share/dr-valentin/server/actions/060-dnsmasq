@@ -1,0 +1,24 @@
+#!/bin/sh
+mkdir $1/dnsmasq/
+
+cp /etc/dnsmasq.conf $1/dnsmasq/
+cp -r /etc/dnsmasq.d/ $1/dnsmasq/
+#old from pandora
+#cp /etc/dnsmasq.d/ltsp-server.conf $1/dnsmasq/
+cp -r /var/lib/dnsmasq/ $1/dnsmasq/
+
+pidof dnsmasq && RET=0 || RET=1
+
+if [ "$RET" = "0" ];then 
+	echo "dnsmasq is running" > $1/dnsmasq/status
+else
+	echo "dnsmasq is stopped" > $1/dnsmasq/status
+fi
+
+host server >> $1/dnsmasq/host_queries
+host jclic-aula >> $1/dnsmasq/host_queries
+host cups >> $1/dnsmasq/host_queries
+host share >> $1/dnsmasq/host_queries
+host mirror >> $1/dnsmasq/host_queries
+host proxy >> $1/dnsmasq/host_queries
+host preseed >> $1/dnsmasq/host_queries
