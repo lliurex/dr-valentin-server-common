@@ -1,0 +1,68 @@
+dr-valentin-server-common (0.13) xenial; urgency=medium
+
+  * Added squid.conf
+
+ -- Juanma Navarro Mañez <juanma1980@gmail.com>  Mon, 10 Oct 2016 10:27:05 +0200
+
+dr-valentin-server-common (0.12) xenial; urgency=medium
+
+  * Fixed,tested & ported to xenial
+
+ -- M.Angel Juan <m.angel.juan@gmail.com>  Wed, 16 Mar 2016 12:57:07 +0100
+
+dr-valentin-server-common (0.9) trusty; urgency=medium
+
+  * first trusty release
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Thu, 02 Jul 2015 08:45:53 +0200
+
+dr-valentin-server-common (0.8) precise; urgency=low
+
+  * removing common tests
+  * added dnsmasq.d directory to dnsmasq tests
+  * n4d-ldap check redone. Should be thorougher
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Tue, 17 Dec 2013 11:59:07 +0100
+
+dr-valentin-server-common (0.7) precise; urgency=high
+
+  * Fixed dnsmasq check
+  * Added hardware check
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Tue, 12 Nov 2013 14:53:59 +0100
+
+dr-valentin-server-common (0.6) precise; urgency=low
+
+  * Added more tests
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Tue, 12 Nov 2013 14:52:46 +0100
+
+dr-valentin-server-common (0.5) precise; urgency=medium
+
+  * Added more tests
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Tue, 22 Oct 2013 13:02:45 +0200
+
+dr-valentin-server-common (0.4) precise; urgency=high
+
+  * Fixed bug with cat /proc/mounts
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Mon, 14 Oct 2013 14:32:28 +0200
+
+dr-valentin-server-common (0.3) precise; urgency=low
+
+  * More fixed
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Tue, 08 Oct 2013 14:15:39 +0200
+
+dr-valentin-server-common (0.2) precise; urgency=low
+
+  * Fixed some bugs
+
+ -- Raul Rodrigo Segura <raurodse@gmail.com>  Tue, 08 Oct 2013 13:17:45 +0200
+
+dr-valentin-server-common (0.1) precise; urgency=low
+
+  * First release
+
+ -- Hector Garcia Huerta <hectorgh@gmail.com>  Wed, 02 Oct 2013 10:00:31 +0200
