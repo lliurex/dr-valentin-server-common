@@ -1,3 +1,9 @@
+dr-valentin-server-common (0.23) bionic; urgency=medium
+
+  * Initial release for bionic
+
+ -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Tue, 16 Oct 2018 17:10:38 +0200
+
 dr-valentin-server-common (0.13) xenial; urgency=medium
 
   * Added squid.conf
