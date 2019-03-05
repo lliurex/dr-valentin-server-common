@@ -1,3 +1,9 @@
+dr-valentin-server-common (0.24) bionic; urgency=medium
+
+  * Replace deprecated eth-tools commands
+
+ -- Juanma Navarro Mañez <juanma1980@gmail.com>  Tue, 05 Mar 2019 18:09:42 +0100
+
 dr-valentin-server-common (0.23) bionic; urgency=medium
 
   * Initial release for bionic
