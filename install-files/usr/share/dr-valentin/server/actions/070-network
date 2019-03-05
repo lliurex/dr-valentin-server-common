@@ -8,9 +8,11 @@ if [ -x /etc/init/network-manager.override ]; then
 fi
 cp /etc/resolv.conf $1/network/
 cp /etc/hosts	$1/network/
-route -n >> $1/network/route
+#route -n >> $1/network/route
+ip route >> $1/network/route
 
-ifconfig >> $1/network/ifconfig
+#ifconfig >> $1/network/ifconfig
+ip addr >> $1/network/ifconfig
 
 iptables-save >> $1/network/iptables
 
