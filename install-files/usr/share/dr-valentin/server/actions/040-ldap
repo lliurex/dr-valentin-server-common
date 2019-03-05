@@ -10,7 +10,8 @@ else
 fi
 LDAPS=0
 LDAP=0
-for port in $(netstat -pnuat | grep slapd | grep -v tcp6 | cut -d ":" -f2 | cut -d " " -f1 | sort -u | tr "\n" " "); do
+#for port in $(netstat -pnuat | grep slapd | grep -v tcp6 | cut -d ":" -f2 | cut -d " " -f1 | sort -u | tr "\n" " "); do
+for port in $(ss -pnuat | grep slapd | grep -v tcp6 | cut -d ":" -f2 | cut -d " " -f1 | sort -u | tr "\n" " "); do
 	if [ "$port" = "389" ]; then
 		echo "Ldap port is ready" >> ${FOLDER}"ports_opened"
 		LDAP=1
