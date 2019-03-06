@@ -4,4 +4,4 @@
 FOLDER="$1/server-proxy-pac/"
 mkdir ${FOLDER}
 
-find /var -name 'proxy.pac' -exec cp {} ${FOLDER}"proxy-pac-in-server"
+find /var -name 'proxy.pac' -exec cp {} ${FOLDER}"proxy-pac-in-server" \;
