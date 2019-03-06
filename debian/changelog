@@ -1,4 +1,4 @@
-dr-valentin-server-common (0.24ubuntu1) bionic; urgency=medium
+dr-valentin-server-common (0.25) bionic; urgency=medium
 
   * Fix find -exec on 081-proxypac
 
