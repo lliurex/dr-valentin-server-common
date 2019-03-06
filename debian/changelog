@@ -1,3 +1,9 @@
+dr-valentin-server-common (0.24ubuntu1) bionic; urgency=medium
+
+  * Fix find -exec on 081-proxypac
+
+ -- Juanma Navarro Mañez <juanma1980@gmail.com>  Wed, 06 Mar 2019 09:18:26 +0100
+
 dr-valentin-server-common (0.24) bionic; urgency=medium
 
   * Replace deprecated eth-tools commands
