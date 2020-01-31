@@ -8,6 +8,6 @@ Standards-Version: 4.1.2
 
 Package: dr-valentin-server-common
 Architecture: all
-Depends: ${shlibs:Depends}, ${misc:Depends}, python, python-ldap, python-smbpasswd, n4d, dr-valentin
+Depends: ${shlibs:Depends}, ${misc:Depends}, python3, python3-ldap, n4d, dr-valentin
 Description:  Server tests for dr valentin
  Package containing server tests for dr valentin
