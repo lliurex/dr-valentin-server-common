@@ -1,3 +1,9 @@
+dr-valentin-server-common (0.36.1) focal; urgency=medium
+
+  * Dummy ugprade
+  
+ -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Fri, 26 Mar 2021 11:43:40 +0100
+
 dr-valentin-server-common (0.36) focal; urgency=medium
 
   * Initial release for focal
