@@ -47,7 +47,7 @@ f.write("USER LIST TESTS...\n")
 
 
 try:
-	ret = c.get_user_list(key,"Golem","*")
+	ret = c.get_user_list(key,"Golem","*").get('return',None)
 	ok=True
 	netadmin_found=False
 	
@@ -87,7 +87,7 @@ except Exception as e:
 f.write("STUDENT LIST... ")
 
 try:
-	ret=c.get_student_list(key,"Golem")
+	ret=c.get_student_list(key,"Golem").get('return',None)
 
 	if is_n4d_exception(ret)!=None:
 		e=Exception("n4d Exception: %s"%is_n4d_exception(ret))
@@ -101,7 +101,7 @@ except Exception as e:
 f.write("TEACHERS LIST... ")
 	
 try:
-	ret=c.get_teacher_list(key,"Golem")
+	ret=c.get_teacher_list(key,"Golem").get('return',None)
 	if is_n4d_exception(ret)!=None:
 		e=Exception("n4d Exception: %s"%is_n4d_exception(ret))
 		raise e
@@ -113,7 +113,7 @@ except Exception as e:
 f.write("STUDENTS PASSWORD LIST... ")
 	
 try:
-	ret=c.get_students_passwords(key,"Golem")
+	ret=c.get_students_passwords(key,"Golem").get('return',None)
 	if is_n4d_exception(ret)!=None:
 		e=Exception("n4d Exception: %s"%is_n4d_exception(ret))
 		raise e
@@ -125,7 +125,7 @@ except Exception as e:
 f.write("GET_FROZEN_USERS LIST... ")
 	
 try:
-	ret=c.get_frozen_users(key,"Golem")
+	ret=c.get_frozen_users(key,"Golem").get('return',None)
 	if is_n4d_exception(ret)!=None:
 		e=Exception("n4d Exception: %s"%is_n4d_exception(ret))
 		raise e
@@ -136,7 +136,7 @@ except Exception as e:
 f.close()
 
 try:
-	ret=c.full_search(key,"Golem")
+	ret=c.full_search(key,"Golem").get('return',None)
 	if is_n4d_exception(ret)!=None:
 		e=Exception("n4d Exception: %s"%is_n4d_exception(ret))
 		raise e

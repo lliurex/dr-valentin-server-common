@@ -2,7 +2,9 @@
 
 mkdir $1/network/
 
-cp /etc/network/interfaces $1/network/
+#cp /etc/network/interfaces $1/network/
+cp -r /etc/netplan/ $1/network/
+
 if [ -x /etc/init/network-manager.override ]; then
     cp /etc/init/network-manager.override $1/network
 fi
