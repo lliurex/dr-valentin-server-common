@@ -1,0 +1,13 @@
+Source: dr-valentin-server-common
+Section: misc
+Priority: standard
+Maintainer: Equipo LliureX <lliurex@gva.es>
+Uploaders: Equipo LliureX <lliurex@gva.es>
+Build-Depends: debhelper (>= 10)
+Standards-Version: 4.1.2
+
+Package: dr-valentin-server-common
+Architecture: all
+Depends: ${shlibs:Depends}, ${misc:Depends}, python3, python3-ldap, n4d, dr-valentin
+Description:  Server tests for dr valentin
+ Package containing server tests for dr valentin
