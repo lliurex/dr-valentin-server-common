@@ -1,3 +1,9 @@
+dr-valentin-server-common (0.46.1) jammy; urgency=medium
+
+  * Initial release for Jammy
+  
+ -- Juan Ramon Pelegrina <juapesai@hotmail.com>  Tue, 21 Nov 2023 12:44:21 +0100
+
 dr-valentin-server-common (0.36.1) focal; urgency=medium
 
   * Dummy ugprade
